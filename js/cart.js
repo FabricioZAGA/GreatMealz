@@ -19,7 +19,7 @@ function iniciaMapa() {
     url: "http://kttm.toyota-industries.com/images/marker.gif",
     scaledSize: new google.maps.Size(50, 50),
     origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(0, 0),
+    anchor: new google.maps.Point(25, 50),
   };
 
   data.push(returnData(20.6805858, -103.3772777));
