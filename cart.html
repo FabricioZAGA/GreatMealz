@@ -106,13 +106,19 @@
          AOS.init();
       </script>
       <!-- SWAL -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
+
+      <!-- FIREBASE -->
+      <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js" ></script>
+      <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js" ></script>
+      <script src="./js/firebase.js"></script>
       <script>
          var _total = 0;
          var divCartList = document.getElementById("divCartList");
+         const cartItems = JSON.parse(localStorage.getItem('cart'));
+         console.log(cartItems)
          var loadCartItems = () => {
          var subTotal = 0;
-         const cartItems = JSON.parse(localStorage.getItem('cart'));
          cartItems.forEach(item => {
             console.log(item)
             var i = '<div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">'
@@ -149,8 +155,17 @@
             text: '¡Su orden ha sido recibida!',
             confirmButtonText: `Continue`,
          }).then((result) => {
-            window.location.href = "list.html"
-            localStorage.setItem('cart', JSON.stringify([]))
+            cartItems.forEach((doc) => {
+               let docRef = db.collection("mealz").doc(); 
+               batch.set(docRef, doc);
+               console.log(docRef, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+            });
+            batch.commit().then((result) => {
+               console.log(result);
+               // window.location.href = "list.html"
+               localStorage.setItem('cart', JSON.stringify([]))
+            })
+
          })
         }
 
