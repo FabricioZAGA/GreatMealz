@@ -9,6 +9,12 @@
       <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
       <link rel="stylesheet" href="./css/cartStyle.css">
       <title>GreatMealz - Checkout</title>
+      <style>
+         #map {
+             width: 100%;
+             height: 200px;
+         }
+     </style>
    </head>
    <body>
       <!-- NAVBAR -->
@@ -27,7 +33,7 @@
                   </li>
                </ul>
             </div>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse end-0" id="navbarNav" style="margin-left: 70%;">
                <ul class="navbar-nav">
                   <li class="nav-item">
                      <a class="nav-link" href="home.html">Salir</a>
@@ -53,30 +59,44 @@
                <div class="payment-info">
                   <div class="d-flex justify-content-between align-items-center"><span>Forma de entrega y pago</span></div>
                   <span class="type d-block mt-3 mb-1">Delivery</span>
-                  <label class="radio"> <input type="radio" name="ship" value="delivery"> <span><img width="30" src="https://img.icons8.com/cotton/48/000000/delivery-scooter--v2.png"/></span> </label>
-                  <label class="radio"> <input type="radio" name="ship" value="delivery"> <span><img width="30" src="https://img.icons8.com/cotton/48/000000/pickup-point.png" /></span> </label>
+                  <label class="radio" onclick='setTotal(50, "none")'> <input type="radio" name="ship" value="delivery"> <span><img width="30" src="https://img.icons8.com/cotton/48/000000/delivery-scooter--v2.png"/></span> </label>
+                  <label class="radio" class="mt-4" onclick='setTotal(0, "block")'> <input type="radio" name="ship" value="delivery"> <span><img width="30" src="https://img.icons8.com/cotton/48/000000/pickup-point.png" /></span> </label>
+                  <div id="map" style="display: none;"></div>
                   <span class="type d-block mt-3 mb-1">Payment Method</span>
-                  <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/cotton/48/000000/money--v4.png"/></span> </label>
-                  <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" /></span> </label>
-                  <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/visa.png" /></span> </label>
-                  <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" /></span> </label>
-                  <label class="radio"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/offices/48/000000/bitcoin.png" /></span> </label>
-                  <div><label class="credit-card-label">Nombre en la tarjeta</label><input type="text" class="form-control credit-inputs" placeholder="Nombre"></div>
-                  <div><label class="credit-card-label">Número de tarjeta</label><input type="text" class="form-control credit-inputs" placeholder="0000 0000 0000 0000"></div>
-                  <div class="row">
-                     <div class="col-md-6"><label class="credit-card-label">Fecha </label><input type="text" class="form-control credit-inputs" placeholder="00/00"></div>
-                     <div class="col-md-6"><label class="credit-card-label">CVV</label><input type="text" class="form-control credit-inputs" placeholder="000"></div>
+                  <label class="radio" onclick="togglePaymentMethod(false)"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/cotton/48/000000/money--v4.png"/></span> </label>
+                  <label class="radio" onclick="togglePaymentMethod(true)"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/color/48/000000/mastercard.png" /></span> </label>
+                  <label class="radio" onclick="togglePaymentMethod(true)"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/visa.png" /></span> </label>
+                  <label class="radio" onclick="togglePaymentMethod(false)"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/officel/48/000000/paypal.png" /></span> </label>
+                  <label class="radio" onclick="togglePaymentMethod(false)"> <input type="radio" name="card" value="payment"> <span><img width="30" src="https://img.icons8.com/offices/48/000000/bitcoin.png" /></span> </label>
+                  <div style="display: none;" id="divCard">
+                     <div><label class="credit-card-label">Nombre en la tarjeta</label><input type="text" class="form-control credit-inputs" placeholder="Nombre"></div>
+                     <div><label class="credit-card-label">Número de tarjeta</label><input type="number" class="form-control credit-inputs" placeholder="0000 0000 0000 0000"></div>
+                     <div class="row">
+                        <div class="col-md-6"><label class="credit-card-label">Fecha </label><input type="number" class="form-control credit-inputs" placeholder="00/00"></div>
+                        <div class="col-md-6"><label class="credit-card-label">CVV</label><input type="number" class="form-control credit-inputs" placeholder="000"></div>
+                     </div>
                   </div>
                   <hr class="line">
                   <div class="d-flex justify-content-between information"><span>Subtotal</span><span id="spnSubTotal"></span></div>
-                  <div class="d-flex justify-content-between information"><span>Entrega</span><span>$50</span></div>
+                  <div class="d-flex justify-content-between information"><span>Entrega</span><span id="spnEntrega">$ </span></div>
                   <div class="d-flex justify-content-between information"><span>Total</span><span id="spnTotal"></span></div>
                   <button onclick="redirect()" class="btn btn-warning btn-block d-flex justify-content-between mt-3" type="button"><span>¡Ordenar ahora!<i class="fa fa-long-arrow-right ml-1"></i></span></button>
                </div>
             </div>
+            
          </div>
+         
       </div>
+      
       <!-- CART -->
+      
+
+      <script src="./js/cart.js"></script>
+
+      <!-- Google Maps -->
+      <script
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnY8kMwai0w66KFgVDfGoFom4BfJ-hkM0&callback=iniciaMapa"
+         async defer></script>
       <!-- SCRIPTS -->
       <!-- Bootstrap Bundle with Popper  -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
@@ -88,11 +108,12 @@
       <!-- SWAL -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.all.min.js"></script>
       <script>
-        var divCartList = document.getElementById("divCartList");
-        var loadCartItems = () => {
-          var subTotal = 0;
-          const cartItems = JSON.parse(localStorage.getItem('cart'));
-          cartItems.forEach(item => {
+         var _total = 0;
+         var divCartList = document.getElementById("divCartList");
+         var loadCartItems = () => {
+         var subTotal = 0;
+         const cartItems = JSON.parse(localStorage.getItem('cart'));
+         cartItems.forEach(item => {
             console.log(item)
             var i = '<div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">'
                 + '<div class="d-flex flex-row">'
@@ -111,7 +132,14 @@
           });
           console.log(subTotal);
           spnSubTotal.innerHTML = `$ ${subTotal}`;
-          spnTotal.innerHTML = `$ ${subTotal + 50}`;
+          _total = subTotal;
+          //spnTotal.innerHTML = `$ ${subTotal + 50}`;
+        }
+
+        var setTotal = (value, style) => {
+         spnTotal.innerHTML = `$ ${_total + value}`;
+         spnEntrega.innerHTML=`$ ${value}`;
+         document.getElementById("map").style.display = style;
         }
 
         var redirect = () => {

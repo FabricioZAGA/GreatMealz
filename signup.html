@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/loginStyle.css">
-    <title>GreatMealz - Iniciar Sesión</title>
+    <title>GreatMealz - Registro</title>
   </head>
   <body>
     <div class="wrapper fadeInDown">
@@ -24,12 +24,13 @@
         <form>
           <input type="text" id="txtEmail" class="fadeIn second" name="email" placeholder="Email">
           <input type="password" id="txtPassword" class="fadeIn third" name="password" placeholder="Contraseña">
-          <input type="button" class="fadeIn fourth" value="Iniciar Sesión" onclick="login()">
+          <input type="password" id="txtPasswordConfirm" class="fadeIn third" name="password" placeholder="Confirmar Contraseña">
+          <input type="button" class="fadeIn fourth" value="Regístrate" onclick="signup()">
         </form>
     
         <!-- Remind Passowrd -->
         <div id="formFooter">
-          <a class="underlineHover" onclick="window.location.href = 'signup.html'">¿Aún no tienes una cuenta? ¡Regístrate!</a>
+          <a class="underlineHover" onclick="window.location.href = 'login.html'">¿Ya tienes una cuenta? ¡Inicia Sesión!</a> 
         </div>
     
       </div>
@@ -47,44 +48,67 @@
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-auth.js"></script>
-    
+
     <script>
+            // Your web app's Firebase configuration
       var firebaseConfig = {
-      apiKey: "AIzaSyDAggylupkweGsMpSlk5Kaz3EkG2keFJvE",
-      authDomain: "greatmealz.firebaseapp.com",
-      projectId: "greatmealz",
-      storageBucket: "greatmealz.appspot.com",
-      messagingSenderId: "969476681075",
-      appId: "1:969476681075:web:7545fb2ae3404503122906"
+        apiKey: "AIzaSyDAggylupkweGsMpSlk5Kaz3EkG2keFJvE",
+        authDomain: "greatmealz.firebaseapp.com",
+        projectId: "greatmealz",
+        storageBucket: "greatmealz.appspot.com",
+        messagingSenderId: "969476681075",
+        appId: "1:969476681075:web:7545fb2ae3404503122906"
       };
       // Initialize Firebase
       firebase.initializeApp(firebaseConfig);
-
-      var login = () => {
-        firebase.auth()
-        .signInWithEmailAndPassword($('#txtEmail').val(), $('#txtPassword').val())
-        .then((res) => {
-          Swal.fire({
+      var signup = () => {
+        if($('#txtEmail').val() == '' || $('#txtPassword').val() == '' || $('#txtPasswordConfirm').val() == '') {
+          Swal.fire(
+            '¡Error!',
+            'Todos los campos son mandatorios',
+            'warning'
+          )
+        } else if ($('#txtEmail').val() < 8) {
+          Swal.fire(
+            '¡Error!',
+            'La contraseña debe de ser mayor a 8 caracteres',
+            'warning'
+          )
+        } else if($('#txtPassword').val() != $('#txtPasswordConfirm').val()) {
+          Swal.fire(
+            '¡Error!',
+            '¡Las contraseñas deben de ser las mismas!',
+            'warning'
+          )
+        } else {
+          console.log("registrando")
+          firebase.auth()
+          .createUserWithEmailAndPassword($('#txtEmail').val(), $('#txtPassword').val())
+          .then(() => {
+            Swal.fire({
             icon: 'success',
             title: 'Exitoso',
-            text: '¡Se inició sesión exitosamente!',
+            text: '¡Se ha registrado correctamente!',
             confirmButtonText: `OK`,
-          }).then((e) => {
-            if (e.isConfirmed) {
-              window.location.href = "list.html"
-              localStorage.setItem('cart', JSON.stringify([]))
-            }
+            }).then((e) => {
+              if (e.isConfirmed) {
+                window.location.href = "login.html"
+              }
+            })
           })
-        })
-        .catch((err) => {
-          Swal.fire(
-              'Error!',
-              'Please check your credentials!',
-              'warning'
+          .catch(() => {
+              Swal.fire(
+              '¡Error!',
+              'Se ha generado un error en el registro',
+              'error'
             )
-        });
-
+          });
+        }
       }
+    </script>
+
+    <script>
+
     </script>
   </body>
 </html>

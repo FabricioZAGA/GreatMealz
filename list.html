@@ -20,7 +20,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse" id="navbarNav" style="margin-left: 80%;">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link" href="home.html">Salir</a>
@@ -36,95 +36,8 @@
     </div>
     
     <!-- MENU -->
-    <div class="row p-5">
-      <div class="col-sm-12 col-md-4 col-lg-3 mb-3" data-aos="flip-left">
-        <div class="card" style="width: 18rem;" >
-          <img src="./img/ta.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" id="txtTitle1">Torta Ahogada</h5>
-            <p class="card-text" id="txtDescription1">Deliciosa torta de carnitas bañada en la salsa especial de la casa.</p>
-            <h6>$<span id="spnCost1">35</span></h6>
-            <a href="#" class="btn btn-warning" onclick="addToCart(1)">Añadir al carrito</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-3 mb-3" data-aos="flip-left">
-        <div class="card" style="width: 18rem;" >
-          <img src="./img/hp.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" id="txtTitle2">Paquete Vegetariano</h5>
-            <p class="card-text" id="txtDescription2">Es un paquete de alimentos vegetarianos para aquellas personas que disfrutan de este estilo de vida.</p>
-            <h6>$<span id="spnCost2">45</span></h6>
-            <a href="#" class="btn btn-warning" onclick="addToCart(2)">Añadir al carrito</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-3 mb-3" data-aos="flip-left">
-        <div class="card" style="width: 18rem;" >
-          <img src="./img/pp.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" id="txtTitle3">Paquete de proteína</h5>
-            <p class="card-text" id="txtDescription3">Un paquete centrado en cumplir con las necesidades proteicas para aquellos que buscan completar con sus macros necesarios para un estilo de vida óptimo.</p>
-            <h6>$<span id="spnCost3">55</span></h6>
-            <a href="#" class="btn btn-warning" onclick="addToCart(3)">Añadir al carrito</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-3 mb-3" data-aos="flip-left">
-        <div class="card" style="width: 18rem;" >
-          <img src="./img/enchiladas.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" id="txtTitle4">Enchiladas</h5>
-            <p class="card-text" id="txtDescription4">Deliciosas enchiladas potosinas acompañadas de queso y cebolla.</p>
-            <h6>$<span id="spnCost4">55</span></h6>
-            <a href="#" class="btn btn-warning" onclick="addToCart(4)">Añadir al carrito</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-3 mb-3" data-aos="flip-left">
-        <div class="card" style="width: 18rem;" >
-          <img src="./img/chilaquiles.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" id="txtTitle5">Chilaquiles</h5>
-            <p class="card-text" id="txtDescription5">Deliciosos chilaquiles rojos con queso, pollo y cebolla.</p>
-            <h6>$<span id="spnCost5">50</span></h6>
-            <a href="#" class="btn btn-warning" onclick="addToCart(5)">Añadir al carrito</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-3 mb-3" data-aos="flip-left">
-        <div class="card" style="width: 18rem;" >
-          <img src="./img/hamb.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" id="txtTitle6">Hamburguesa</h5>
-            <p class="card-text" id="txtDescription6">Hamburguesa de tamaño regular con queso derretido y salsa casera.</p>
-            <h6>$<span id="spnCost6">55</span></h6>
-            <a href="#" class="btn btn-warning" onclick="addToCart(6)">Añadir al carrito</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-3 mb-3" data-aos="flip-left">
-        <div class="card" style="width: 18rem;" >
-          <img src="./img/waffles.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" id="txtTitle7">Waffles</h5>
-            <p class="card-text" id="txtDescription7">Waffles de tamaño regular con mantequilla y miel de maple.</p>
-            <h6>$<span id="spnCost7">45</span></h6>
-            <a href="#" class="btn btn-warning" onclick="addToCart(7)">Añadir al carrito</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-4 col-lg-3 mb-3" data-aos="flip-left">
-        <div class="card" style="width: 18rem;" >
-          <img src="./img/tp.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title" id="txtTitle8">Tacos al Pastor</h5>
-            <p class="card-text" id="txtDescription8">Ordeb de 3 tacos con vegetales y piña.</p>
-            <h6>$<span id="spnCost8">25</span></h6>
-            <a href="#" class="btn btn-warning" onclick="addToCart(8)">Añadir al carrito</a>
-          </div>
-        </div>
-      </div>
+    <div class="row p-5" id="divPlatillos">
+
     </div>
     <!-- END MENU -->
 
@@ -144,13 +57,15 @@
     <script>
       AOS.init();
     </script>
-    <script>
+    <script> 
+      var items = [];
       var addToCart = (id) => {
         Swal.fire({
           icon: 'question',
           title: '¿Quieres añadir ' + $(`#txtTitle${id}`).html() + ' al carrito?',
           showCancelButton: true,
-          confirmButtonText: `Add`,
+          confirmButtonText: `Añadir`,
+          cancelButtonText: 'Cancelar'
         }).then((result) => {
           /* Read more about isConfirmed, isDenied below */
           if (result.isConfirmed) {
@@ -162,6 +77,34 @@
           } 
         })
       }
+      fetch('https://pv0o5o5psl.execute-api.us-east-2.amazonaws.com/prod/api/platillos')
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data)
+        data.forEach(d => {
+            var i = '<div class="col-sm-12 col-md-4 col-lg-3 mb-3" data-aos="flip-left">'
+                + '<div class="card" style="width: 18rem;" >'
+                + '<img src='
+                + d.image
+                + ' class="card-img-top" alt="...">'
+                + '<div class="card-body">'
+                + '<h5 class="card-title" id="txtTitle'+ d.id +'">'
+                + d.name
+                + '</h5>'
+                + '<p class="card-text" id="txtDescription'+ d.id +'"></p>'
+                + d.description
+                + '</p>'
+                + '<h6>$<span id="spnCost'+ d.id +'">'
+                + d.cost
+                + '</span></h6>'
+                + '<a href="#" class="btn btn-warning" onclick="addToCart('
+                + d.id
+                + ')">Añadir al carrito</a>'
+                + '</div></div></div></div>'
+                divPlatillos.innerHTML += i;
+          });
+      });
+      console.log(items);
     </script>
   </body>
 </html>
